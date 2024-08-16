@@ -1,0 +1,38 @@
+query Search($first: Int!, $after: String) {
+  search(
+    first: $first
+    after: $after
+  ) {
+    nodes {
+      ... on SpecialProjectSearchResultItem {
+        specialProject {
+          id
+          title
+          images {
+            id
+            url
+          }
+        }
+      }
+      ... on WardSearchResultItem {
+        ward {
+          id
+          publicInformation {
+            name {
+              displayName
+            }
+            photo {
+              id
+              url
+            }
+          }
+        }
+      }
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+    totalCount
+  }
+}
